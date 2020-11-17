@@ -1,0 +1,20 @@
+from pandas import read_csv
+from pandas import datetime
+from matplotlib import pyplot
+from statsmodels.tsa.arima_model import ARIMA
+url='https://raw.githubusercontent.com/jbrownlee/Datasets/master/shampoo.csv'
+
+data=read_csv(url)
+data.head()
+from pmdarima import auto_arima
+import warnings
+warnings.filterwarnings("ignore")
+stepfit=auto_arima(data['Sales'],trace=True,suppress_warnings=True)
+stepfit.summary()
+model =ARIMA(data['Sales'], order=(5,1,0))
+model_fit = model.fit(disp=0)
+print(model_fit.summary())
+print(len(data['Sales']))
+pred=model.predict(start=len(data['Sales'],end=len(data['Sales'])+30,typ='levels',dynamic=False).rename('ARIMA Predictions')
+print(pred)
+pred.plot(figsize=(12,5),legend=True)
