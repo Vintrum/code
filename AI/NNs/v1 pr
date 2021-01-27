@@ -1,0 +1,18 @@
+import os
+import datetime
+
+import IPython
+import IPython.display
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import tensorflow as tf
+df = pd.read_csv(z)
+model=tf.keras.Sequential()
+model.add(tf.keras.layers.LSTM(units=64,activation='tanh'))
+model.add(tf.keras.layers.Dense(units=64,activation='relu'))
+model.add(tf.keras.layers.Dense(units=32,activation='relu'))
+model.add(tf.keras.layers.Dense(1))
+model.summary()
